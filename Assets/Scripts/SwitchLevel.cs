@@ -27,4 +27,14 @@ public class SwitchLevel : MonoBehaviour
 
         SceneManager.LoadScene(nextSceneIndex <= maxSceneIndex ? nextSceneIndex : 0);
     }
+
+    public void SwitchToPreviousScene()
+    {
+        var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        var maxSceneIndex = SceneManager.sceneCountInBuildSettings - 1;
+
+        int previouSceneIndex = currentSceneIndex - 1;
+
+        SceneManager.LoadScene(previouSceneIndex >= 0 ? previouSceneIndex : maxSceneIndex);
+    }
 }
