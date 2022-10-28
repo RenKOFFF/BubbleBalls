@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PausePopup : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public static UnityEvent OnPauseEnterEvent = new UnityEvent();
+    public static UnityEvent OnPauseExitEvent = new UnityEvent();
     void Start()
     {
         gameObject.SetActive(false);
@@ -12,17 +14,11 @@ public class PausePopup : MonoBehaviour
 
     private void OnEnable()
     {
-        Time.timeScale = 0;
+        OnPauseEnterEvent.Invoke();
     }
 
     private void OnDisable()
     {
-        Time.timeScale = 1;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        OnPauseExitEvent.Invoke();
     }
 }
