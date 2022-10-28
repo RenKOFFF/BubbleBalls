@@ -24,9 +24,9 @@ public class ShootOnDirection : MonoBehaviour
             _mousePositionOnScreen = _camera.ScreenToWorldPoint(_mousePosition);
         }
 
-        if (Input.GetButtonUp("Fire1") && _mousePositionOnScreen.y > _ball.transform.position.y)
+        if (Input.GetButtonUp("Fire1") && _mousePositionOnScreen.y > _ball.transform.position.y && !TimeGameManager.instanse.IsGameOnPause)
         {
-            _ballRigidbody.velocity = (_mousePositionOnScreen - (Vector2)_ball.transform.position).normalized * _force;
+            BallGun.instanse.ShootOnDirection(_mousePositionOnScreen);
         }
     }
 }
