@@ -10,6 +10,8 @@ public class ShootOnDirection : MonoBehaviour
     private Vector2 _mousePositionOnScreen;
     private Camera _camera;
 
+    [SerializeField] private TrajectoryBallRenderer _trajectoryRenderer;
+
     void Start()
     {
         _ballRigidbody = GetComponent<Rigidbody>();
@@ -22,11 +24,15 @@ public class ShootOnDirection : MonoBehaviour
         {
             var _mousePosition = Input.mousePosition;
             _mousePositionOnScreen = _camera.ScreenToWorldPoint(_mousePosition);
+            if (_mousePositionOnScreen.y > _ball.transform.position.y)
+                _trajectoryRenderer.ShowTrajectory(_mousePositionOnScreen);
+            else _trajectoryRenderer.HideTrajectory();
         }
 
         if (Input.GetButtonUp("Fire1") && _mousePositionOnScreen.y > _ball.transform.position.y && !TimeGameManager.instanse.IsGameOnPause)
         {
             BallGun.instanse.ShootOnDirection(_mousePositionOnScreen);
+            _trajectoryRenderer.HideTrajectory();
         }
     }
 }
