@@ -7,7 +7,7 @@ public class BallGun : MonoBehaviour
     [HideInInspector] public static BallGun instanse;
 
     [SerializeField] private GameObject _ball;
-    [SerializeField] private float _force = 1f;
+    [SerializeField] private float _force = 400f;
     private Rigidbody _ballRigidbody;
 
     void Awake()
@@ -23,8 +23,8 @@ public class BallGun : MonoBehaviour
     public void ShootOnDirection(Vector2 mousePositionOnScreen)
     {
         var ball = Instantiate(_ball, transform.position, Quaternion.identity);
-        var rg = ball.GetComponent<Rigidbody>();
-
-        rg.velocity = (mousePositionOnScreen - (Vector2)_ball.transform.position).normalized * _force;
+        var rb = ball.GetComponent<Rigidbody>();
+        
+        rb.AddForce((mousePositionOnScreen - (Vector2)_ball.transform.position).normalized * _force);
     }
 }
