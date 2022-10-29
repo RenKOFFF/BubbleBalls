@@ -18,6 +18,11 @@ public class SwitchLevel : MonoBehaviour
         SceneManager.LoadScene(name);
     }
 
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void SwitchToNextScene()
     {
         var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;

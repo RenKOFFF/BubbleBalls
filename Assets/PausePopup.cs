@@ -7,7 +7,7 @@ public class PausePopup : MonoBehaviour
 {
     public static UnityEvent OnPauseEnterEvent = new UnityEvent();
     public static UnityEvent OnPauseExitEvent = new UnityEvent();
-    void Start()
+    protected void Start()
     {
         gameObject.SetActive(false);
     }
