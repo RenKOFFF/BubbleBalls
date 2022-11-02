@@ -26,7 +26,8 @@ public class ShootOnDirection : MonoBehaviour
             _mousePositionOnScreen = _camera.ScreenToWorldPoint(_mousePosition);
             if (_mousePositionOnScreen.y > _ball.transform.position.y)
                 _trajectoryRenderer.ShowTrajectory(_mousePositionOnScreen);
-            else _trajectoryRenderer.HideTrajectory();
+            else 
+                _trajectoryRenderer.HideTrajectory();
         }
 
         if (Input.GetButtonUp("Fire1") && _mousePositionOnScreen.y > _ball.transform.position.y && !TimeGameManager.instanse.IsGameOnPause)
